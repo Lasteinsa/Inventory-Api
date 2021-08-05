@@ -78,6 +78,7 @@ class Barang_model{
             $this->db->query("SELECT barang_keluar.quantity,
                 barang_keluar.desk,
                 barang_keluar.admin,
+                barang_keluar.created_at,
                 barang_gudang.name
             FROM barang_keluar  
             INNER JOIN barang_gudang 
