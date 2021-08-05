@@ -215,20 +215,17 @@ class Barang extends BaseController{
     public function hapus(): void
     {
         Utility::reqMethodCheck('DELETE');
-        Utility::_methodParser('_DELETE');
-        global $_DELETE;
-        var_dump($_DELETE);
 
         $validation = [];
         // if parameter missing
-        (!isset($_DELETE['product_id']))      ? Utility::response(400,"parameter 'product_id' is missing"):'';
+        (!isset($_GET['product_id']))      ? Utility::response(400,"parameter 'product_id' is missing"):'';
         // not empty
-        (strlen($_DELETE['product_id']) == 0) ? Utility::response(400,"'product_id' cannot be empty") 
+        (strlen($_GET['product_id']) == 0) ? Utility::response(400,"'product_id' cannot be empty") 
         : '';
         // if product not exist
-        $this->model("barang_model")->checkBarang($_DELETE['product_id']);
+        $this->model("barang_model")->checkBarang($_GET['product_id']);
 
-       $this->model("barang_model")->hapusbBarang($_DELETE['product_id']);
+       $this->model("barang_model")->hapusbBarang($_GET['product_id']);
     }
 
 }
