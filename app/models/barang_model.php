@@ -75,7 +75,13 @@ class Barang_model{
     public function getBarangKeluar(): void
     {
         try {
-            $this->db->query("SELECT * FROM barang_keluar ORDER BY id DESC");
+            $this->db->query("SELECT barang_keluar.quantity,
+                barang_keluar.desk,
+                barang_keluar.admin,
+                barang_gudang.name
+            FROM barang_keluar  
+            INNER JOIN barang_gudang 
+            ON (barang_gudang.id = barang_keluar.product_id) ORDER BY barang_keluar.product_id DESC");
             Utility::response(200,$this->db->multiResult());
         }
         catch(Exception $err) {
