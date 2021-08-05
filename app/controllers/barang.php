@@ -110,27 +110,28 @@ class Barang extends BaseController{
     {
         Utility::reqMethodCheck('POST');
         $validation = [];
+        parse_str(file_get_contents('php://input'), $_post);
         // if parameter missing
-        (!isset($_POST['product_name'])   ) ? Utility::response(400,"parameter 'product_name' is missing")   : '';
-        (!isset($_POST['admin'])   ) ? Utility::response(400,"parameter 'admin' is missing")   : '';
-        (!isset($_POST['quantity'])) ? Utility::response(400,"parameter 'quantity' is missing"): '';
-        (!isset($_POST['desk'])    ) ? Utility::response(400,"parameter 'desk' is missing")    : '';
+        (!isset($_post['product_name'])   ) ? Utility::response(400,"parameter 'product_name' is missing")   : '';
+        (!isset($_post['admin'])   ) ? Utility::response(400,"parameter 'admin' is missing")   : '';
+        (!isset($_post['quantity'])) ? Utility::response(400,"parameter 'quantity' is missing"): '';
+        (!isset($_post['desk'])    ) ? Utility::response(400,"parameter 'desk' is missing")    : '';
         // not empty
-        (strlen($_POST['product_name'])   == 0) ? $validation['product_name']    = "cannot be empty"  : '';
-        (strlen($_POST['admin'])   == 0) ? $validation['admin']    = "cannot be empty"  : '';
-        (strlen($_POST['quantity'])== 0) ? $validation['quantity'] = "cannot be empty"  : '';
-        (strlen($_POST['desk'])    == 0) ? $validation['desk']     = "cannot be empty"  : '';
+        (strlen($_post['product_name'])   == 0) ? $validation['product_name']    = "cannot be empty"  : '';
+        (strlen($_post['admin'])   == 0) ? $validation['admin']    = "cannot be empty"  : '';
+        (strlen($_post['quantity'])== 0) ? $validation['quantity'] = "cannot be empty"  : '';
+        (strlen($_post['desk'])    == 0) ? $validation['desk']     = "cannot be empty"  : '';
         // max length 
-        (strlen($_POST['product_name'])   > 100)? $validation['product_name']     = "max 100 character"  : '';
-        (strlen($_POST['admin'])   > 100)? $validation['admin']     = "max 100 character"  : '';
-        (strlen($_POST['quantity'])> 11)  ? $validation['quantity'] = "max 11 character" : '';
-        (strlen($_POST['desk'])    > 255) ? $validation['desk']     = "max 255 character" : '';
+        (strlen($_post['product_name'])   > 100)? $validation['product_name']     = "max 100 character"  : '';
+        (strlen($_post['admin'])   > 100)? $validation['admin']     = "max 100 character"  : '';
+        (strlen($_post['quantity'])> 11)  ? $validation['quantity'] = "max 11 character" : '';
+        (strlen($_post['desk'])    > 255) ? $validation['desk']     = "max 255 character" : '';
         // quantity must number 
-        ((bool)preg_match_all('/[A-Za-z,.\\/?><:;\'\"|!@#$%^&*()\-_\+={}\\[\\]`~]/', $_POST['quantity']))  ? $validation['quantity']   = "must integer!"  : '';
+        ((bool)preg_match_all('/[A-Za-z,.\\/?><:;\'\"|!@#$%^&*()\-_\+={}\\[\\]`~]/', $_post['quantity']))  ? $validation['quantity']   = "must integer!"  : '';
         
         (!empty($validation)) ? Utility::response(400,$validation) : '';
 
-       $this->model("barang_model")->pengajuan($_POST);
+       $this->model("barang_model")->pengajuan($_post);
     }
 
     /**
