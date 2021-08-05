@@ -56,6 +56,34 @@ class Barang_model{
     }
 
     /**
+     * GET BARANG MASUK
+     */
+    public function getBarangMasuk(): void
+    {
+        try {
+            $this->db->query("SELECT * FROM barang_masuk ORDER BY id DESC");
+            Utility::response(200,$this->db->multiResult());
+        }
+        catch(Exception $err) {
+            Utility::response(500,$err->getMessage());
+        }
+    }
+
+    /**
+     * GET BARANG KELUAR
+     */
+    public function getBarangKeluar(): void
+    {
+        try {
+            $this->db->query("SELECT * FROM barang_keluar ORDER BY id DESC");
+            Utility::response(200,$this->db->multiResult());
+        }
+        catch(Exception $err) {
+            Utility::response(500,$err->getMessage());
+        }
+    }
+
+    /**
      * ADD BARANG
      */
     public function addBarang(array $data): void

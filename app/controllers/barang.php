@@ -15,6 +15,32 @@ class Barang extends BaseController{
     }
 
     /**
+     * GET BARANG MASUK
+     * 
+     * method   : GET
+     * endpoint : yourwebsite.com/barang/getBarangMasuk
+     * 
+     */
+    public function getBarangMasuk(): void
+    {
+        Utility::reqMethodCheck('GET');
+        $this->model("barang_model")->getBarangMasuk();
+    }
+
+    /**
+     * GET BARANG KELUAR
+     * 
+     * method   : GET
+     * endpoint : yourwebsite.com/barang/getBarangKeluar
+     * 
+     */
+    public function getBarangKeluar(): void
+    {
+        Utility::reqMethodCheck('GET');
+        $this->model("barang_model")->getBarangKeluar();
+    }
+
+    /**
      * ADD BARANG
      * 
      * method   : POST
