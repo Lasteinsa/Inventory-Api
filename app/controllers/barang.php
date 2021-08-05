@@ -31,23 +31,23 @@ class Barang extends BaseController{
         $validation = [];
         
         // if parameter missing
-        (!isset($_post['name'])    ) ? Utility::response(400,"parameter 'name' is missing")  : '';
-        (!isset($_post['quantity'])) ? Utility::response(400,"parameter 'quantity' is missing")  : '';
-        (!isset($_post['desk'])    ) ? Utility::response(400,"parameter 'desk' is missing")  : '';
+        (!isset($_POST['name'])    ) ? Utility::response(400,"parameter 'name' is missing")  : '';
+        (!isset($_POST['quantity'])) ? Utility::response(400,"parameter 'quantity' is missing")  : '';
+        (!isset($_POST['desk'])    ) ? Utility::response(400,"parameter 'desk' is missing")  : '';
         // not empty
-        (strlen($_post['name'])    == 0) ? $validation['name']     = "cannot be empty"  : '';
-        (strlen($_post['quantity'])== 0) ? $validation['quantity'] = "cannot be empty"  : '';
-        (strlen($_post['desk'])    == 0) ? $validation['desk']     = "cannot be empty"  : '';
+        (strlen($_POST['name'])    == 0) ? $validation['name']     = "cannot be empty"  : '';
+        (strlen($_POST['quantity'])== 0) ? $validation['quantity'] = "cannot be empty"  : '';
+        (strlen($_POST['desk'])    == 0) ? $validation['desk']     = "cannot be empty"  : '';
         // max length 
-        (strlen($_post['name'])    > 100)? $validation['name']    = "max 100 character"  : '';
-        (strlen($_post['quantity'])> 11) ? $validation['quantity'] = "max 11 character"  : '';
-        (strlen($_post['desk'])    > 255)? $validation['desk']    = "max 255 character"  : '';
+        (strlen($_POST['name'])    > 100)? $validation['name']    = "max 100 character"  : '';
+        (strlen($_POST['quantity'])> 11) ? $validation['quantity'] = "max 11 character"  : '';
+        (strlen($_POST['desk'])    > 255)? $validation['desk']    = "max 255 character"  : '';
         // quantity must number 
-        ((bool)preg_match_all('/[A-Za-z,.\\/?><:;\'\"|!@#$%^&*()\-_\+={}\\[\\]`~]/', $_post['quantity']))  ? $validation['quantity']   = "must integer!"  : '';
+        ((bool)preg_match_all('/[A-Za-z,.\\/?><:;\'\"|!@#$%^&*()\-_\+={}\\[\\]`~]/', $_POST['quantity']))  ? $validation['quantity']   = "must integer!"  : '';
         
         (!empty($validation)) ? Utility::response(400,$validation) : '';
 
-       $this->model("barang_model")->addBarang($_post);
+       $this->model("barang_model")->addBarang($_POST);
     }
 
     /**
