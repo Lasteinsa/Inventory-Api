@@ -31,6 +31,7 @@ class Barang extends BaseController{
         $validation = [];
         Utility::_methodParser('_post');
         global $_post;
+        var_dump($_post);die;
         
         // if parameter missing
         (!isset($_post['name'])    ) ? Utility::response(400,"parameter 'name' is missing")  : '';
