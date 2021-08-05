@@ -3,10 +3,10 @@
 class Database{
     public $dbh;
     public $stmt;
-    private $db_host = 'localhost';
-    private $db_name = 'inventory';
-    private $db_user = 'root';
-    private $db_pass = '';
+    private $db_host = 'remotemysql.com';
+    private $db_name = 'tKJqSor9fp';
+    private $db_user = 'tKJqSor9fp';
+    private $db_pass = 'bb13ATOmBX';
 
     public function __construct()
     {

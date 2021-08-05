@@ -1,4 +1,4 @@
-    Header set Content-Type: "application/json"
+Header set Content-Type: "application/json"
     
 
 Options -Multiviews
