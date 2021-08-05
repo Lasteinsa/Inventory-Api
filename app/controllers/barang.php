@@ -31,7 +31,6 @@ class Barang extends BaseController{
         $validation = [];
         Utility::_methodParser('_post');
         global $_post;
-        var_dump($_post);
         
         // if parameter missing
         (!isset($_post['name'])    ) ? Utility::response(400,"parameter 'name' is missing")  : '';
@@ -112,14 +111,17 @@ class Barang extends BaseController{
         Utility::reqMethodCheck('POST');
         $validation = [];
         // if parameter missing
+        (!isset($_POST['product_name'])   ) ? Utility::response(400,"parameter 'product_name' is missing")   : '';
         (!isset($_POST['admin'])   ) ? Utility::response(400,"parameter 'admin' is missing")   : '';
         (!isset($_POST['quantity'])) ? Utility::response(400,"parameter 'quantity' is missing"): '';
         (!isset($_POST['desk'])    ) ? Utility::response(400,"parameter 'desk' is missing")    : '';
         // not empty
+        (strlen($_POST['product_name'])   == 0) ? $validation['product_name']    = "cannot be empty"  : '';
         (strlen($_POST['admin'])   == 0) ? $validation['admin']    = "cannot be empty"  : '';
         (strlen($_POST['quantity'])== 0) ? $validation['quantity'] = "cannot be empty"  : '';
         (strlen($_POST['desk'])    == 0) ? $validation['desk']     = "cannot be empty"  : '';
         // max length 
+        (strlen($_POST['product_name'])   > 100)? $validation['product_name']     = "max 100 character"  : '';
         (strlen($_POST['admin'])   > 100)? $validation['admin']     = "max 100 character"  : '';
         (strlen($_POST['quantity'])> 11)  ? $validation['quantity'] = "max 11 character" : '';
         (strlen($_POST['desk'])    > 255) ? $validation['desk']     = "max 255 character" : '';
@@ -134,7 +136,7 @@ class Barang extends BaseController{
     /**
      * PENGAMBILAN
      * 
-     * method   : POST
+     * method   : PUT
      * endpoint : yourwebsite.com/barang/pengambilan
      * 
      * parameter

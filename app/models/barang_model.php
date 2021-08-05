@@ -114,7 +114,8 @@ class Barang_model{
     public function pengajuan(array $data): void
     {
         try {
-            $this->db->query("INSERT INTO pengajuan(admin,quantity,desk) VALUES(:admin,:quantity,:desk)");
+            $this->db->query("INSERT INTO pengajuan(product_name,admin,quantity,desk) VALUES(:product_name,:admin,:quantity,:desk)");
+            $this->db->bind('product_name'   ,$data['product_name']);
             $this->db->bind('admin'   ,$data['admin']);
             $this->db->bind('quantity',$data['quantity']);
             $this->db->bind('desk'    ,$data['desk']);
