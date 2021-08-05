@@ -215,7 +215,9 @@ class Barang extends BaseController{
     public function hapus(): void
     {
         Utility::reqMethodCheck('DELETE');
-        parse_str(file_get_contents('php://input'), $_DELETE);
+        Utility::_methodParser('_DELETE');
+        global $_DELETE;
+        var_dump($_DELETE);
 
         $validation = [];
         // if parameter missing
