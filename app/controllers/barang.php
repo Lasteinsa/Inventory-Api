@@ -41,6 +41,19 @@ class Barang extends BaseController{
     }
 
     /**
+     * GET PENGAJUAN BARANG
+     * 
+     * method   : GET
+     * endpoint : yourwebsite.com/barang/getPengajuan
+     * 
+     */
+    public function getPengajuan(): void
+    {
+        Utility::reqMethodCheck('GET');
+        $this->model("barang_model")->getPengajuan();
+    }
+
+    /**
      * ADD BARANG
      * 
      * method   : POST
@@ -225,7 +238,7 @@ class Barang extends BaseController{
         // if product not exist
         $this->model("barang_model")->checkBarang($_GET['product_id']);
 
-       $this->model("barang_model")->hapusbBarang($_GET['product_id']);
+       $this->model("barang_model")->hapusBarang($_GET['product_id']);
     }
 
 }

@@ -91,6 +91,20 @@ class Barang_model{
     }
 
     /**
+     * GET PENGAJUAN BARANG
+     */
+    public function getPengajuan(): void
+    {
+        try {
+            $this->db->query("SELECT * FROM pengajuan ORDER BY id DESC");
+            Utility::response(200,$this->db->multiResult());
+        }
+        catch(Exception $err) {
+            Utility::response(500,$err->getMessage());
+        }
+    }
+
+    /**
      * ADD BARANG
      */
     public function addBarang(array $data): void
@@ -200,7 +214,7 @@ class Barang_model{
     /**
      * HAPUS BARANG
      */
-    public function hapusbBarang(string $id): void
+    public function hapusBarang(string $id): void
     {
         try {
             $this->db->query("DELETE FROM barang_gudang WHERE id = :id");
